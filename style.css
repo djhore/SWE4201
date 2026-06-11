@@ -1,0 +1,445 @@
+/* ============================================================
+   style.css — Resource Management Systems Ltd.
+   Shared stylesheet for all pages:
+     - index.html       (home / welcome)
+     - monthly.html     (monthly salary calculation)
+     - bonus.html       (annual bonus / switch-case)
+   ============================================================ */
+
+
+/* ── Reset & Base ─────────────────────────────────────────── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+    color: #2c3e50;
+}
+
+
+/* ── Header ───────────────────────────────────────────────── */
+#header {
+    background: #1a2e4a;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    border-bottom: 4px solid #e67e22;
+}
+
+#header h2 {
+    font-size: 1.6em;
+    font-weight: 600;
+}
+
+#header p {
+    font-size: 0.82em;
+    color: #aac4e0;
+    margin-top: 4px;
+}
+
+
+/* ── Page Layout ──────────────────────────────────────────── */
+#wrapper {
+    display: flex;
+    min-height: calc(100vh - 110px);
+}
+
+#main {
+    flex: 1;
+    padding: 30px;
+}
+
+
+/* ── Sidebar ──────────────────────────────────────────────── */
+#sidebar {
+    width: 230px;
+    flex-shrink: 0;
+    background: #1a2e4a;
+}
+
+#top_menu {
+    list-style: none;
+}
+
+#top_menu > li > a {
+    display: block;
+    padding: 13px 16px;
+    color: #cdd8e6;
+    text-decoration: none;
+    font-size: 0.86em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #243a56;
+    transition: background 0.2s;
+}
+
+#top_menu > li > a:hover {
+    background: #243a56;
+    color: white;
+}
+
+/* Arrow indicator on expandable items */
+.expandable::after {
+    content: '›';
+    float: right;
+    font-size: 1.1em;
+    transition: transform 0.25s;
+    display: inline-block;
+}
+
+/* Open state — orange background + rotated arrow */
+.expandable.expanded {
+    background: #e67e22 !important;
+    color: white !important;
+}
+
+.expandable.expanded::after {
+    transform: rotate(90deg);
+}
+
+/* Submenu (nested ul) */
+#top_menu ul {
+    display: none;
+    list-style: none;
+    background: #0f1e30;
+}
+
+#top_menu ul li a {
+    display: block;
+    padding: 10px 16px 10px 30px;
+    color: #8bacc8;
+    text-decoration: none;
+    font-size: 0.83em;
+    border-bottom: 1px solid #1a2e4a;
+    transition: background 0.2s, padding-left 0.2s;
+}
+
+#top_menu ul li a:hover {
+    background: #1a2e4a;
+    color: #e0ecf8;
+    padding-left: 36px;
+}
+
+/* Highlights the current page link in the sidebar */
+#top_menu ul li a.active-link {
+    background: #243a56;
+    color: #f0a040;
+    font-weight: 600;
+}
+
+
+/* ── Footer ───────────────────────────────────────────────── */
+#footer {
+    background: #1a2e4a;
+    color: #8bacc8;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.8em;
+}
+
+
+/* ── Welcome Card (index.html) ────────────────────────────── */
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+
+/* ── Monthly Salary Page (monthly.html) ───────────────────── */
+.container {
+    width: 500px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+.result {
+    background: #fff3cd;
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 5px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    background: #1a2e4a;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+button:hover  { background: #243a56; }
+button:active { transform: scale(0.98); }
+
+
+/* ── Annual Bonus Page (bonus.html) ───────────────────────── */
+
+/* Center the form card in the main area */
+#main.bonus-main {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+/* Card wrapper */
+.form-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 560px;
+    overflow: hidden;
+}
+
+.form-card-header {
+    background: #1a2e4a;
+    color: white;
+    padding: 18px 24px;
+    text-align: center;
+}
+
+.form-card-header h2 {
+    font-size: 1.25em;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.form-card-body {
+    padding: 24px;
+}
+
+/* Form table layout */
+.form-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.form-table td {
+    padding: 8px 6px;
+    vertical-align: middle;
+    font-size: 0.9em;
+}
+
+.form-table td:first-child {
+    font-weight: 600;
+    font-style: italic;
+    color: #1a2e4a;
+    white-space: nowrap;
+    width: 200px;
+}
+
+.form-table select,
+.form-table input[type="text"] {
+    width: 100%;
+    padding: 7px 10px;
+    border: 1px solid #ccd6e0;
+    border-radius: 5px;
+    font-size: 0.88em;
+    color: #2c3e50;
+    background: #f8fafc;
+    transition: border-color 0.2s;
+}
+
+.form-table select:focus,
+.form-table input[type="text"]:focus {
+    outline: none;
+    border-color: #e67e22;
+    background: white;
+}
+
+/* Inline salary display next to employee dropdown */
+.salary-display {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.88em;
+}
+
+.salary-display span {
+    font-weight: 700;
+    color: #1a2e4a;
+    font-size: 1em;
+}
+
+/* Output fields — yellow for percent, dark blue for amount */
+.output-percent {
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-style: italic;
+    color: #7d1010;
+    background: #fff176;
+    border: 1px solid #f9d000;
+    font-size: 0.92em;
+    min-width: 140px;
+    display: inline-block;
+}
+
+.output-amount {
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-style: italic;
+    color: white;
+    background: #1a2e4a;
+    border: 1px solid #0f1e30;
+    font-size: 0.92em;
+    min-width: 120px;
+    display: inline-block;
+    text-align: right;
+}
+
+.dollar-prefix {
+    font-weight: 700;
+    font-style: italic;
+    color: #1a2e4a;
+    margin-right: 4px;
+}
+
+/* Calculate button (bonus page — overrides the global button) */
+#btnCalculate {
+    margin-top: 20px;
+    padding: 11px 30px;
+    width: auto;
+    background: #1a2e4a;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.92em;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.4px;
+    transition: background 0.2s, transform 0.1s;
+}
+
+#btnCalculate:hover  { background: #243a56; }
+#btnCalculate:active { transform: scale(0.98); }
+
+/* Blue info box used for tutorial notes */
+.tutorial-note {
+    margin: 20px 24px 0;
+    padding: 12px 16px;
+    background: #eaf4fb;
+    border: 1px solid #aed6f1;
+    border-radius: 7px;
+    font-size: 0.82em;
+    color: #1a5276;
+    line-height: 1.7;
+}
+
+.tutorial-note strong { color: #1a2e4a; }
+
+.tutorial-note code {
+    background: #d6eaf8;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95em;
+}
+
+/* Grade reference legend grid */
+.grade-legend {
+    margin: 0 0 24px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.grade-pill {
+    text-align: center;
+    padding: 6px 4px;
+    border-radius: 6px;
+    font-size: 0.75em;
+    border: 1px solid #e0e8f0;
+    background: #f8fafc;
+}
+
+.grade-pill .grade-name {
+    font-weight: 700;
+    color: #1a2e4a;
+    font-size: 1em;
+}
+
+.grade-pill .grade-pct {
+    color: #e67e22;
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+.grade-pill .grade-desc {
+    color: #8a9bb0;
+    font-size: 0.9em;
+    margin-top: 1px;
+}
+
+
+/* ── Employee Search Results (employeesearch.html) ────────── */
+
+/* Result table — mirrors tutorial's bordered table */
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+    font-size: 0.9em;
+}
+
+.result-table th {
+    background: #1a2e4a;
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.result-table td {
+    padding: 10px 14px;
+    border: 1px solid #d0dce8;
+    color: #2c3e50;
+    background: #f8fafc;
+}
+
+.result-table tr:hover td {
+    background: #eaf4fb;
+}
+
+/* "Employee Not Found" message */
+.not-found {
+    padding: 14px 18px;
+    background: #fff3cd;
+    border: 1px solid #f9d000;
+    border-radius: 6px;
+    color: #7d5a00;
+    font-weight: 600;
+    font-size: 0.92em;
+}
