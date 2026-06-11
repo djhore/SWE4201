@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RMS Ltd. — Annual Bonus</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <div id="header">
+      <h2>Resource Management Systems Ltd.</h2>
+      <p>
+        Employee Management Portal &nbsp;·&nbsp; Session 13 — switch-case
+        Statement
+      </p>
+    </div>
+
+    <div id="wrapper">
+      <nav id="sidebar">
+        <ul id="top_menu">
+          <li><a href="index.html">🏠 Home</a></li>
+          <li>
+            <a href="#">👥 Employee Records</a>
+            <ul>
+              <li><a href="#">Employee List</a></li>
+              <li><a href="#">Employee Search</a></li>
+              <li><a href="#">Add Employee</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">💰 Salary Calculations</a>
+            <ul>
+              <li><a href="monthly.html">Monthly Salary</a></li>
+              <li><a href="bonus.html" class="active-link">Annual Bonus</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">🏖️ Leave Calculations</a>
+            <ul>
+              <li><a href="#">Leave Application</a></li>
+              <li><a href="#">Leave Balance</a></li>
+              <li><a href="#">Leave History</a></li>
+            </ul>
+          </li>
+          <li><a href="#">📞 Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <main id="main bonus-main">
+        <div style="width: 100%; max-width: 560px; margin: auto">
+          <div class="form-card">
+            <div class="form-card-header">
+              <h2>Employee Annual Bonus</h2>
+            </div>
+
+            <div class="form-card-body">
+              <form id="frmGrade">
+                <table class="form-table">
+                  <!-- ROW 1: Employee Name + auto-filled Salary -->
+                  <tr>
+                    <td><label for="sltEmployeeName">Employee Name:</label></td>
+                    <td>
+                      <select id="sltEmployeeName" onchange="updateSalary()">
+                        <option value="0">-- SELECT --</option>
+                        <option value="9000">John Mathew</option>
+                        <option value="10000">Jill Fernandes</option>
+                        <option value="25000">Paul Patton</option>
+                        <option value="50000">Paul Pierce</option>
+                        <option value="45000">Danny Brown</option>
+                        <option value="65000">Rozy Byrne</option>
+                        <option value="25000">Rock Francis</option>
+                        <option value="78000">Leo Lambert</option>
+                        <option value="34000">Nell Naomi</option>
+                        <option value="22000">Victoria Carol</option>
+                      </select>
+                    </td>
+                    <td>
+                      <div class="salary-display">
+                        Salary: $&nbsp;<span id="txtSalary">0</span>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- ROW 2: Grade -->
+                  <tr>
+                    <td><label for="sltGrade">Grade:</label></td>
+                    <td colspan="2">
+                      <select id="sltGrade">
+                        <option value="">-- SELECT GRADE --</option>
+                        <option value="A1">A1</option>
+                        <option value="A2">A2</option>
+                        <option value="A3">A3</option>
+                        <option value="A4">A4</option>
+                        <option value="M1">M1</option>
+                        <option value="M2">M2</option>
+                        <option value="M3">M3</option>
+                        <option value="M4">M4</option>
+                      </select>
+                    </td>
+                  </tr>
+
+                  <!-- ROW 3: Grade Allowance % output -->
+                  <tr>
+                    <td>Grade Allowance (%):</td>
+                    <td colspan="2">
+                      <span class="dollar-prefix">$</span>
+                      <span class="output-percent" id="optGradePercent"
+                        >000.00</span
+                      >
+                    </td>
+                  </tr>
+
+                  <!-- ROW 4: Grade Amount output -->
+                  <tr>
+                    <td>Grade Amount:</td>
+                    <td colspan="2">
+                      <span class="dollar-prefix">$</span>
+                      <span class="output-amount" id="optGradeAmount"
+                        >000.00</span
+                      >
+                    </td>
+                  </tr>
+                </table>
+
+                <button type="button" id="btnCalculate">Calculate</button>
+              </form>
+            </div>
+
+            <div class="tutorial-note">
+              <strong>How it works:</strong> Selecting an employee auto-fills
+              their salary via <code>onchange</code>. Clicking Calculate runs
+              <code>getGrade()</code> which uses a <code>switch</code> statement
+              on the selected grade to set the correct allowance percentage and
+              bonus amount.
+            </div>
+          </div>
+
+          <!-- Grade Reference Legend -->
+          <div style="margin-top: 20px">
+            <p
+              style="
+                font-size: 0.8em;
+                color: #8a9bb0;
+                margin-bottom: 10px;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+              "
+            >
+              Grade Reference
+            </p>
+            <div class="grade-legend">
+              <div class="grade-pill">
+                <div class="grade-name">A1</div>
+                <div class="grade-pct">5%</div>
+                <div class="grade-desc">Entry</div>
+              </div>
+              <div class="grade-pill">
+                <div class="grade-name">A2</div>
+                <div class="grade-pct">7%</div>
+                <div class="grade-desc">Junior</div>
+              </div>
+              <div class="grade-pill">
+                <div class="grade-name">A3</div>
+                <div class="grade-pct">9%</div>
+                <div class="grade-desc">Mid</div>
+              </div>
+              <div class="grade-pill">
+                <div class="grade-name">A4</div>
+                <div class="grade-pct">10%</div>
+                <div class="grade-desc">Senior</div>
+              </div>
+              <div class="grade-pill">
+                <div class="grade-name">M1</div>
+                <div class="grade-pct">10%</div>
+                <div class="grade-desc">Mgr I</div>
+              </div>
+              <div class="grade-pill">
+                <div class="grade-name">M2</div>
+                <div class="grade-pct">12%</div>
+                <div class="grade-desc">Mgr II</div>
+              </div>
+              <div class="grade-pill">
+                <div class="grade-name">M3</div>
+                <div class="grade-pct">14%</div>
+                <div class="grade-desc">Mgr III</div>
+              </div>
+              <div class="grade-pill">
+                <div class="grade-name">M4</div>
+                <div class="grade-pct">15%</div>
+                <div class="grade-desc">Director</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div id="footer">
+      &copy; 2026 Resource Management Systems Ltd. &nbsp;·&nbsp; jQuery 3.7.1
+    </div>
+
+    <script>
+      // ── Sidebar accordion ──────────────────────────────────────
+      $(function () {
+        const $menu = $("#top_menu");
+
+        $menu.find("ul").hide();
+        $menu.find("li:has(ul) > a").addClass("expandable");
+
+        // Auto-open the section that contains the active link
+        $menu
+          .find(".active-link")
+          .closest("ul")
+          .show()
+          .prev("a")
+          .addClass("expanded");
+
+        $menu.on("click", ".expandable", function (e) {
+          e.preventDefault();
+          const $this = $(this);
+          const $submenu = $this.next("ul");
+
+          $submenu.stop(true, true).slideToggle(300);
+          $this.toggleClass("expanded");
+
+          $menu.find(".expandable").not($this).removeClass("expanded");
+          $menu.find("ul").not($submenu).slideUp(300);
+        });
+      });
+
+      // ── Auto-fill salary when employee is selected ─────────────
+      function updateSalary() {
+        const salary = document.getElementById("sltEmployeeName").value;
+        document.getElementById("txtSalary").textContent =
+          Number(salary).toLocaleString();
+      }
+
+      // ── Bonus calculation using switch-case ────────────────────
+      function getGrade() {
+        const salary = Number(document.getElementById("sltEmployeeName").value);
+        const grade = document.getElementById("sltGrade").value;
+
+        if (!salary || !grade) {
+          alert("Please select an employee and a grade.");
+          return;
+        }
+
+        const gradePercent = document.getElementById("optGradePercent");
+        const gradeAmount = document.getElementById("optGradeAmount");
+
+        switch (grade) {
+          case "A1":
+            gradePercent.textContent = "5% of Basic Salary";
+            gradeAmount.textContent = ((salary * 5) / 100).toFixed(2);
+            break;
+          case "A2":
+            gradePercent.textContent = "7% of Basic Salary";
+            gradeAmount.textContent = ((salary * 7) / 100).toFixed(2);
+            break;
+          case "A3":
+            gradePercent.textContent = "9% of Basic Salary";
+            gradeAmount.textContent = ((salary * 9) / 100).toFixed(2);
+            break;
+          case "A4":
+            gradePercent.textContent = "10% of Basic Salary";
+            gradeAmount.textContent = ((salary * 10) / 100).toFixed(2);
+            break;
+          case "M1":
+            gradePercent.textContent = "10% of Basic Salary";
+            gradeAmount.textContent = ((salary * 10) / 100).toFixed(2);
+            break;
+          case "M2":
+            gradePercent.textContent = "12% of Basic Salary";
+            gradeAmount.textContent = ((salary * 12) / 100).toFixed(2);
+            break;
+          case "M3":
+            gradePercent.textContent = "14% of Basic Salary";
+            gradeAmount.textContent = ((salary * 14) / 100).toFixed(2);
+            break;
+          case "M4":
+            gradePercent.textContent = "15% of Basic Salary";
+            gradeAmount.textContent = ((salary * 15) / 100).toFixed(2);
+            break;
+          default:
+            gradePercent.textContent = "---";
+            gradeAmount.textContent = "0.00";
+        }
+      }
+
+      document
+        .getElementById("btnCalculate")
+        .addEventListener("click", getGrade);
+    </script>
+  </body>
+</html>
+
